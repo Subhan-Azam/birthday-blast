@@ -85,7 +85,7 @@ const SurpriseMessage = ({ message, show }: SurpriseMessageProps) => {
           </span>
         ))}
       </div>
-      <div className="bg-gradient-to-br from-hsl(280_60%_20%_/_0.8) to-hsl(320_50%_25%_/_0.9) backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-hsl(330_85%_60%_/_0.3) shadow-2xl">
+      <div className="bg-white/5 bg-gradient-to-br from-hsl(280_60%_20%_/_0.8) to-hsl(320_50%_25%_/_0.9) backdrop-blur-md rounded-3xl p-6 md:p-8 border border-hsl(330_85%_60%_/_0.3) shadow-2xl">
         <p
           ref={messageRef}
           className="text-lg md:text-2xl lg:text-3xl font-poppins text-foreground leading-relaxed max-w-3xl mx-auto opacity-0"
