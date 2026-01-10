@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
-import gsap from 'gsap';
+import { useRef, useState, useEffect } from "react";
+import gsap from "gsap";
 import {
   Balloons,
   Cake,
@@ -8,20 +8,14 @@ import {
   BirthdayHero,
   SurpriseButton,
   SurpriseMessage,
-} from '@/components/birthday';
-import type { ConfettiRef } from '@/components/birthday';
+} from "@/components/birthday";
+import type { ConfettiRef } from "@/components/birthday";
 
-// ============================================
-// CUSTOMIZATION - Change these values easily!
-// ============================================
 const BIRTHDAY_CONFIG = {
-  // The birthday person's name
-  name: 'Sarah',
-  
-  // The surprise message shown after clicking the button
-  message: "Wishing you a day filled with love, laughter, and all your favorite things! May this year bring you endless joy, exciting adventures, and dreams come true. You deserve all the happiness in the world! 🌟",
+  name: "Subhan",
+  message:
+    "Wishing you a day filled with love, laughter, and all your favorite things! May this year bring you endless joy, exciting adventures, and dreams come true. You deserve all the happiness in the world! 🌟",
 };
-// ============================================
 
 const Index = () => {
   const confettiRef = useRef<ConfettiRef>(null);
@@ -33,18 +27,18 @@ const Index = () => {
     if (!bgRef.current) return;
 
     gsap.to(bgRef.current, {
-      backgroundPosition: '100% 100%',
+      backgroundPosition: "100% 100%",
       duration: 10,
       repeat: -1,
       yoyo: true,
-      ease: 'sine.inOut',
+      ease: "sine.inOut",
     });
   }, []);
 
   const handleSurprise = () => {
     // Trigger confetti burst
     confettiRef.current?.burst();
-    
+
     // Show surprise message after a short delay
     setTimeout(() => {
       setShowSurprise(true);
@@ -56,8 +50,8 @@ const Index = () => {
       ref={bgRef}
       className="birthday-bg min-h-screen flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden"
       style={{
-        backgroundSize: '200% 200%',
-        backgroundPosition: '0% 0%',
+        backgroundSize: "200% 200%",
+        backgroundPosition: "0% 0%",
       }}
     >
       {/* Background elements */}
@@ -78,13 +72,23 @@ const Index = () => {
           {!showSurprise ? (
             <SurpriseButton onSurprise={handleSurprise} />
           ) : (
-            <SurpriseMessage message={BIRTHDAY_CONFIG.message} show={showSurprise} />
+            <SurpriseMessage
+              message={BIRTHDAY_CONFIG.message}
+              show={showSurprise}
+            />
           )}
         </div>
       </main>
 
       {/* Footer credit */}
-      <footer className="absolute bottom-4 text-center text-muted-foreground text-sm font-poppins">
+      <footer
+        className="absolute bottom-4 text-center text-muted-foreground text-sm font-poppins"
+        style={{
+          textShadow:
+            "0 1px 3px hsl(0 0% 0% / 0.8), 0 0 10px hsl(330 85% 60% / 0.3)",
+          color: "hsl(0 0% 85%)",
+        }}
+      >
         Made with 💖 for {BIRTHDAY_CONFIG.name}
       </footer>
     </div>

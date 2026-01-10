@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap");
 
 /* Birthday Celebration Design System */
 
@@ -47,10 +47,27 @@
     --birthday-green: 140 70% 50%;
 
     /* Gradients */
-    --gradient-bg: linear-gradient(135deg, hsl(280 60% 12%) 0%, hsl(320 50% 20%) 50%, hsl(280 60% 15%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(330 85% 60%) 0%, hsl(45 100% 60%) 100%);
-    --gradient-button: linear-gradient(135deg, hsl(330 85% 60%) 0%, hsl(280 60% 50%) 100%);
-    --gradient-surprise: linear-gradient(135deg, hsl(45 100% 60%) 0%, hsl(25 100% 55%) 100%);
+    --gradient-bg: linear-gradient(
+      135deg,
+      hsl(280 60% 12%) 0%,
+      hsl(320 50% 20%) 50%,
+      hsl(280 60% 15%) 100%
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      hsl(330 85% 60%) 0%,
+      hsl(45 100% 60%) 100%
+    );
+    --gradient-button: linear-gradient(
+      135deg,
+      hsl(330 85% 60%) 0%,
+      hsl(280 60% 50%) 100%
+    );
+    --gradient-surprise: linear-gradient(
+      135deg,
+      hsl(45 100% 60%) 0%,
+      hsl(25 100% 55%) 100%
+    );
 
     /* Shadows */
     --shadow-glow: 0 0 40px hsl(330 85% 60% / 0.5);
@@ -113,12 +130,17 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fredoka', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Fredoka", sans-serif;
   }
 }
 
@@ -147,7 +169,8 @@
   }
 
   .glow-text {
-    text-shadow: 0 0 20px hsl(330 85% 60% / 0.8), 0 0 40px hsl(330 85% 60% / 0.5);
+    text-shadow: 0 0 20px hsl(330 85% 60% / 0.8),
+      0 0 40px hsl(330 85% 60% / 0.5);
   }
 
   .balloon {
@@ -156,5 +179,23 @@
 
   .candle-flame {
     filter: blur(1px);
+  }
+
+  .text-enhanced-readability {
+    text-shadow: 0 2px 4px hsl(0 0% 0% / 0.8), 0 0 20px hsl(330 85% 60% / 0.4);
+    line-height: 1.6;
+  }
+
+  .message-backdrop {
+    background: linear-gradient(
+      135deg,
+      hsl(280 60% 20% / 0.8) 0%,
+      hsl(320 50% 25% / 0.9) 100%
+    );
+    backdrop-filter: blur(15px);
+
+    border: 1px solid hsl(330 85% 60% / 0.3);
+    box-shadow: 0 20px 40px hsl(0 0% 0% / 0.4),
+      inset 0 1px 0 hsl(330 85% 60% / 0.2);
   }
 }
