@@ -12,7 +12,7 @@ import {
 import type { ConfettiRef } from "@/components/birthday";
 
 const BIRTHDAY_CONFIG = {
-  name: "Subhan",
+  name: "Fatii jan",
   message:
     "Wishing you a day filled with love, laughter, and all your favorite things! May this year bring you endless joy, exciting adventures, and dreams come true. You deserve all the happiness in the world! 🌟",
 };
