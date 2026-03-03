@@ -6,3 +6,4 @@ export { default as Stars } from './Stars';
 export { default as BirthdayHero } from './BirthdayHero';
 export { default as SurpriseButton } from './SurpriseButton';
 export { default as SurpriseMessage } from './SurpriseMessage';
+export { default as Countdown } from './Countdown';

@@ -8,6 +8,7 @@ import {
   BirthdayHero,
   SurpriseButton,
   SurpriseMessage,
+  Countdown,
 } from "@/components/birthday";
 import type { ConfettiRef } from "@/components/birthday";
 
@@ -17,10 +18,16 @@ const BIRTHDAY_CONFIG = {
     "Wishing you a day filled with love, laughter, and all your favorite things! May this year bring you endless joy, exciting adventures, and dreams come true. You deserve all the happiness in the world! 🌟",
 };
 
+const TARGET_DATE = new Date("2026-03-05T00:00:00");
+
 const Index = () => {
   const confettiRef = useRef<ConfettiRef>(null);
   const [showSurprise, setShowSurprise] = useState(false);
   const bgRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  
+  // Check if target date is already passed
+  const [isTimeUp, setIsTimeUp] = useState(() => new Date() >= TARGET_DATE);
 
   // Background gradient animation
   useEffect(() => {
@@ -34,6 +41,17 @@ const Index = () => {
       ease: "sine.inOut",
     });
   }, []);
+
+  // Main content entrance animation after countdown completes
+  useEffect(() => {
+    if (isTimeUp && mainRef.current) {
+      gsap.fromTo(
+        mainRef.current,
+        { opacity: 0, scale: 0.9, y: 20 },
+        { opacity: 1, scale: 1, y: 0, duration: 1.5, ease: "power3.out" }
+      );
+    }
+  }, [isTimeUp]);
 
   const handleSurprise = () => {
     // Trigger confetti burst
@@ -56,29 +74,35 @@ const Index = () => {
     >
       {/* Background elements */}
       <Stars />
-      <Balloons />
+      {isTimeUp && <Balloons />}
       <Confetti ref={confettiRef} />
 
-      {/* Main content */}
-      <main className="relative z-20 flex flex-col items-center gap-8 md:gap-12">
-        {/* Hero text */}
-        <BirthdayHero name={BIRTHDAY_CONFIG.name} />
+      {!isTimeUp ? (
+        <Countdown 
+          targetDate={TARGET_DATE} 
+          onComplete={() => setIsTimeUp(true)} 
+        />
+      ) : (
+        <main ref={mainRef} className="relative z-20 flex flex-col items-center gap-8 md:gap-12 opacity-0">
+          {/* Hero text */}
+          <BirthdayHero name={BIRTHDAY_CONFIG.name} />
 
-        {/* Cake */}
-        <Cake />
+          {/* Cake */}
+          <Cake />
 
-        {/* Surprise button or message */}
-        <div className="min-h-[200px] flex items-center justify-center">
-          {!showSurprise ? (
-            <SurpriseButton onSurprise={handleSurprise} />
-          ) : (
-            <SurpriseMessage
-              message={BIRTHDAY_CONFIG.message}
-              show={showSurprise}
-            />
-          )}
-        </div>
-      </main>
+          {/* Surprise button or message */}
+          <div className="min-h-[200px] flex items-center justify-center">
+            {!showSurprise ? (
+              <SurpriseButton onSurprise={handleSurprise} />
+            ) : (
+              <SurpriseMessage
+                message={BIRTHDAY_CONFIG.message}
+                show={showSurprise}
+              />
+            )}
+          </div>
+        </main>
+      )}
 
       {/* Footer credit */}
       <footer
