@@ -25,7 +25,7 @@ const Index = () => {
   const [showSurprise, setShowSurprise] = useState(false);
   const bgRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLElement>(null);
-  
+
   // Check if target date is already passed
   const [isTimeUp, setIsTimeUp] = useState(() => new Date() >= TARGET_DATE);
 
@@ -48,7 +48,7 @@ const Index = () => {
       gsap.fromTo(
         mainRef.current,
         { opacity: 0, scale: 0.9, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 1.5, ease: "power3.out" }
+        { opacity: 1, scale: 1, y: 0, duration: 1.5, ease: "power3.out" },
       );
     }
   }, [isTimeUp]);
@@ -77,13 +77,33 @@ const Index = () => {
       {isTimeUp && <Balloons />}
       <Confetti ref={confettiRef} />
 
+      {/* Birthday Girl Picture */}
+      {isTimeUp && (
+        <div
+          className="relative z-30 mb-8 sm:mb-12 mt-4 animate-fade-in"
+          style={{ animationDuration: "1.5s" }}
+        >
+          <div className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full shadow-[0_0_40px_rgba(236,72,153,0.6)] border-4 border-pink-300/80 overflow-hidden relative group transform hover:scale-105 hover:shadow-[0_0_60px_rgba(236,72,153,0.8)] transition-all duration-500">
+            <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+            <img
+              src="/images/fatima.jpg"
+              alt="Fatima"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            />
+          </div>
+        </div>
+      )}
+
       {!isTimeUp ? (
-        <Countdown 
-          targetDate={TARGET_DATE} 
-          onComplete={() => setIsTimeUp(true)} 
+        <Countdown
+          targetDate={TARGET_DATE}
+          onComplete={() => setIsTimeUp(true)}
         />
       ) : (
-        <main ref={mainRef} className="relative z-20 flex flex-col items-center gap-8 md:gap-12 opacity-0">
+        <main
+          ref={mainRef}
+          className="relative z-20 flex flex-col items-center gap-8 md:gap-12 opacity-0"
+        >
           {/* Hero text */}
           <BirthdayHero name={BIRTHDAY_CONFIG.name} />
 
@@ -106,7 +126,7 @@ const Index = () => {
 
       {/* Footer credit */}
       <footer
-        className="absolute bottom-4 text-center text-muted-foreground text-sm font-poppins"
+        className="absolute bottom-4 text-center text-muted-foreground text-sm font-poppins z-30"
         style={{
           textShadow:
             "0 1px 3px hsl(0 0% 0% / 0.8), 0 0 10px hsl(330 85% 60% / 0.3)",
